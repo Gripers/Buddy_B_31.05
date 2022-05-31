@@ -1,0 +1,134 @@
+.mini-cart-btn {
+  position: fixed;
+  z-index: 9999999;
+  width: 56px;
+  height: 56px;
+  background: #fdc100;
+  cursor: pointer;
+  border: none;
+  border-radius: 50%;
+  bottom: 15px;
+  right: 15px;
+}
+
+.MuiPaper-root {
+  min-width: 60%;
+}
+
+.mini-cart-drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2vh;
+  p {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+  }
+  svg {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.mini-cart-drawer-burgers {
+  height: 577px;
+  overflow-y: scroll;
+}
+
+.mini-cart-drawer-burgers::-webkit-scrollbar {
+  display: none !important;
+}
+
+.mini-cart-drawer-burger {
+  padding: 1vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .mini-cart-drawer-img {
+    display: flex;
+    width: 100px;
+    height: 70px;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+  .mini-cart-drawer-title {
+    p {
+      font-size: 16px;
+      margin: 0;
+    }
+    .price-pharagraph {
+      color: #51267d;
+    }
+  }
+  .mini-cart-drawer-counter {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    background: #efefef;
+    border-radius: 8px;
+    .decrement {
+      border: none;
+      width: 32px;
+      height: 32px;
+      color: #51267d;
+      font-size: 20px;
+      background: none;
+    }
+    p {
+      text-align: center;
+      margin: 0;
+    }
+    .increment {
+      border: none;
+      width: 32px;
+      height: 32px;
+      color: #51267d;
+      font-size: 20px;
+      background: none;
+    }
+  }
+  .mini-cart-drawer-remove {
+    svg {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+    }
+  }
+}
+
+.mini-cart-drawer-foot {
+  margin-top: auto;
+  padding: 1vh;
+  .mini-cart-send-products-btn {
+    min-width: 90%;
+    max-width: 90%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: none;
+    border-radius: 8px;
+    background: #51267d;
+    color: white;
+    padding: 2vh;
+    p {
+      margin: 0;
+    }
+  }
+}
+
+@media all and (min-width: 820px) {
+  .mini-cart-glav {
+    display: none;
+  }
+}
+@media all and (max-width: 600px) {
+  .MuiPaper-root {
+    min-width: 100%;
+  }
+}

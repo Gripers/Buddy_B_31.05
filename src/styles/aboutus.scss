@@ -1,0 +1,45 @@
+.aboutus-glav-box {
+  background: white;
+  margin: 3rem auto;
+  border-radius: 12px;
+  padding: 3vh;
+  .aboutus-up-box {
+    text-align: center;
+    height: 360px;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+  }
+  .aboutus-down-box {
+    h3 {
+      font-size: 24px;
+      font-weight: bold;
+    }
+    p {
+      font-size: 16px;
+    }
+    a {
+      color: #51267d;
+      text-decoration: none;
+    }
+  }
+}
+
+@media all and (min-width: 1280px) {
+  .aboutus-glav-box {
+    max-width: 1146px !important;
+  }
+}
+@media all and (max-width: 1280px) {
+  .aboutus-glav-box {
+    max-width: 95% !important;
+  }
+}
+@media all and (max-width: 800px) {
+  .aboutus-up-box {
+    height: 190px !important;
+  }
+}

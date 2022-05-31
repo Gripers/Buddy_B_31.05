@@ -1,0 +1,62 @@
+.MuiDialog-paper {
+  padding: 3vh !important;
+  min-width: 422px !important;
+  height: auto !important;
+  border-radius: 12px !important;
+}
+
+.login-dialog-header {
+  display: flex;
+  justify-content: end;
+  svg {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+  }
+}
+
+.login-dialog-body {
+  text-align: center;
+  h3 {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  .login-header {
+    h3 {
+      font-size: 24px;
+      font-weight: bold;
+    }
+    p {
+      font-size: 16px;
+    }
+  }
+  .login-middle {
+    display: grid;
+    row-gap: 20px;
+    input {
+      min-width: 100%;
+      border: none;
+      border-radius: 8px;
+      background: #f7f7f7;
+      padding: 2vh;
+      &:focus-visible {
+        outline: 1px solid black;
+      }
+    }
+    button {
+      border: none;
+      background: #51267d;
+      color: white;
+      border-radius: 8px;
+      padding: 2vh;
+    }
+  }
+  .login-footer {
+    display: flex;
+    justify-content: space-between;
+    p {
+      margin: 0;
+      font-size: 16px;
+    }
+  }
+}

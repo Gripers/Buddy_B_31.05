@@ -1,0 +1,54 @@
+.MuiButtonBase-root {
+  color: #51267d !important;
+}
+.drawer-sign-in-btn {
+  width: 94px;
+  height: 40px;
+  border: none;
+  border-radius: 8px;
+  background: #51267d;
+  color: white;
+  font-weight: bold;
+}
+
+.MuiDrawer-paper {
+  min-width: 60%;
+}
+
+.drawer-upper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2vh;
+  svg {
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.drawer-downer {
+  margin-top: 40%;
+  .navi-links {
+    display: grid;
+    height: 240px;
+    margin-left: 15%;
+    a {
+      font-weight: bold;
+      color: black;
+      text-decoration: none;
+      font-size: 24px;
+    }
+  }
+}
+
+@media all and (max-width: 820px) {
+  .MuiToolbar-gutters {
+    padding: 0 1% !important;
+  }
+}
+@media all and (max-width: 600px) {
+  .MuiDrawer-paper {
+    min-width: 100%;
+  }
+}

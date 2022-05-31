@@ -1,0 +1,92 @@
+{
+  "translation": {
+    "value": "O'zb"
+  },
+  "navbar": {
+    "home": "Asosiy",
+    "filials": "Filiallar",
+    "about-us": "Biz haqimizda",
+    "contacts": "Kontaktlar",
+    "basket": "Savat",
+    "sign-in": "Kirish"
+  },
+  "btn": {
+    "choose": "Tanlash",
+    "back": "Bekor qilish"
+  },
+  "categories": {
+    "all": "Hammasi"
+  },
+  "filials": {
+    "first": {
+      "name": "Buddy Burger Oboy",
+      "street": "Oboy ko'chasi 57",
+      "worktime": "Ish vaqti",
+      "time": "Har kuni: 10:00-1:00",
+      "inner": {
+        "name": "Buddy Burger Oboy",
+        "adress": "Manzil: Oboy ko'chasi 57",
+        "worktime": "Ish vaqti: 11:00-1:00",
+        "number": ["Telefon raqami: ", "+998 71 244 54 45"],
+        "orient": "Orientir: San Farm"
+      }
+    },
+    "second": {
+      "name": "Buddy Burger Yunusobod",
+      "street": "Yunusobod 14 kvartal",
+      "worktime": "Ish vaqti",
+      "time": "Har kuni: 10:00-3:00",
+      "inner": {
+        "name": "Buddy Burger Yunusobod",
+        "adress": "Manzil: Yunusobod 14 kvartal",
+        "worktime": "Ish vaqti: 11:00-3:00",
+        "number": ["Telefon raqami: ", "+998 99 849 03 30"],
+        "orient": "Orientir: Otaginam kafe"
+      }
+    }
+  },
+  "aboutus": {
+    "aboutcompany": "Kompaniya haqida",
+    "title": [
+      "Kompaniya 2005 yil fevral oyida Toshkentda tashkil etilgan. Bugungi kunda kompaniya Toshkentda 11 ta filialga ega. Menyu asosan sendvichlar, hot-dog, burgerlar, lavash va donar klublaridan iborat. Bizning ustuvorliklarimiz-ingredientlarning yangiligi va sifati, plombalarning xilma-xilligi, arzon narxlar va mehmonlarning talablariga e'tibor. Maxwayda har kuni turli xil odamlar buyurtma berishadi. Va biz tashrif buyuruvchilar sonini va filiallar sonini ko'paytirishga harakat qilamiz. Har bir pishirilgan taom bilan biz markali retseptlar tafsilotlarini bilib olamiz va sizning sevimli brendingiz bo'lishni davom ettirish uchun narx va sifatning mukammal muvozanatini qidiramiz. Agar siz to'satdan yomon xizmat yoki past sifatli pishirilgan ovqatlarga duch kelsangiz, bizga elektron pochta orqali xabar qiling",
+      "Buddy Burger bot",
+      "Biz ijobiy va salbiy sharhlarni qabul qilishdan mamnunmiz. Mehmonning shikoyati-bu biz o'sadigan joyimiz bo'lgan sovg'adir."
+    ]
+  },
+  "contacts": {
+    "description": "Kontaktlar",
+    "title": [
+      "Bizga yozishingiz mumkin",
+      "@BuddyBurgerBot",
+      "+998712445445, +998998490330 raqamlariga ham qo'ng'iroq qilishingiz mumkin"
+    ]
+  },
+  "cart": {
+    "send": "Buyurtma berish",
+    "empty": "Savat xozircha bo'sh"
+  },
+  "sign": {
+    "login": {
+      "enter": "Saytga kirish",
+      "title": "Telefon raqamingiz orqali kiring",
+      "input": "Telefon raqamingizni kiriting",
+      "log": "Kirish",
+      "account": "Akkountingiz yo'qmi?",
+      "reg": "Ro'yxatga olish",
+      "code": "Kod"
+    },
+    "register": {
+      "desript": "Ro'yxatga olish",
+      "name": "Ism",
+      "phone": "Telefon raqamingizni kiriting",
+      "zareg": "Ro'yxatdan o'tish",
+      "acc": "Akkountingiz bormi?",
+      "in": "Kirish",
+      "code": "Kod"
+    }
+  },
+  "profile": {
+    "info": "Mening tafsilotlarim",
+    "out": "Chiqish"
+  }
+}

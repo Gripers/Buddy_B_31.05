@@ -1,0 +1,51 @@
+.MuiPaper-elevation4 {
+  box-shadow: none !important;
+}
+.MuiToolbar-root {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: unset !important;
+}
+.start {
+  display: flex;
+}
+.basket-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: none;
+  background: none;
+  width: 85px;
+  color: #51267d;
+  font-weight: bold;
+  font-size: 15px;
+}
+.sign-in-btn {
+  padding: 1vh;
+  width: 94px;
+  border: none;
+  border-radius: 8px;
+  background: #51267d;
+  color: white;
+  font-weight: bold;
+}
+.dropdown-toggle {
+  box-shadow: none !important;
+  background: #51267d !important;
+}
+.dropdown-menu li .dropdown-item:active {
+  background: none !important;
+}
+
+.active {
+  color: #51267d !important;
+}
+
+@media (min-width: 1280px) {
+  .MuiToolbar-root {
+    max-width: 1146px;
+    margin: 0 auto;
+  }
+}
