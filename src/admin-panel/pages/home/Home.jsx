@@ -10,6 +10,8 @@ const Home = () => {
   useEffect(() => {
     if (localStorage.getItem("user")) {
       navigate("/");
+    } else if (!localStorage.getItem("admin")) {
+      navigate("/");
     }
   }, []);
 

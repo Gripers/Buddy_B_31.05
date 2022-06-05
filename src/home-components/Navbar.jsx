@@ -129,7 +129,11 @@ function Navbar() {
               </div>
               <div className="end">
                 <div className={classes.btns}>
-                  <button className="basket-btn" onClick={cartOpen}>
+                  <button
+                    className="basket-btn"
+                    onClick={cartOpen}
+                    style={{ userSelect: "none" }}
+                  >
                     <img src={cart} alt="" />
                     {t("navbar.basket")}
                   </button>

@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import { Context } from "../context";
 
 export default function DropMenu() {
@@ -56,12 +57,17 @@ export default function DropMenu() {
           borderRadius: "12px",
           fontWeight: "bold",
           fontSize: "16px",
+          userSelect: "none",
         }}
       >
         <div style={{ display: "grid", rowGap: "10px" }}>
-          <p className="text-black" style={{ cursor: "pointer", margin: "0" }}>
+          <Link
+            className="text-black"
+            style={{ cursor: "pointer", margin: "0", textDecoration: "none" }}
+            to="/userinfo"
+          >
             {t("profile.info")}
-          </p>
+          </Link>
           <p
             className="text-black"
             style={{ cursor: "pointer", margin: "0" }}
@@ -73,9 +79,18 @@ export default function DropMenu() {
           >
             {t("profile.out")}
           </p>
-          <p className="text-black" style={{ cursor: "pointer", margin: "0" }}>
-            KOP
-          </p>
+          <Link
+            to="/admin"
+            className="text-black"
+            style={{
+              cursor: "pointer",
+              margin: "0",
+              textDecoration: "none",
+              display: localStorage.getItem("admin") ? "block" : "none",
+            }}
+          >
+            Admin
+          </Link>
         </div>
       </div>
     </div>

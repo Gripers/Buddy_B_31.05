@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 
 import minishoppingcart from "../img/mini-shopping-cart.png";
 import "../styles/mini-cart.scss";
@@ -8,8 +8,16 @@ import emptycart from "../img/empty_cart.png";
 import axios from "axios";
 
 const MiniShoppingCart = () => {
-  const { t, items, i18n, updateItemQuantity, isEmpty, removeItem, emptyCart } =
-    useContext(Context);
+  const {
+    t,
+    items,
+    i18n,
+    updateItemQuantity,
+    isEmpty,
+    removeItem,
+    emptyCart,
+    openDrawer,
+  } = useContext(Context);
   const [open, setOpen] = useState(false);
 
   let totalPrice = 0;
@@ -79,7 +87,10 @@ ${item.count} x ${item.price} = ${item.count * item.price} UZS`;
           <p></p>
         )}
         <div className="mini-cart-drawer-body">
-          <div className="mini-cart-drawer-burgers">
+          <div
+            className="mini-cart-drawer-burgers"
+            style={{ display: isEmpty ? "none" : "block" }}
+          >
             {items &&
               items.map((item) => {
                 if (item.count >= 1) {

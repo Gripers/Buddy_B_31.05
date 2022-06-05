@@ -10,7 +10,7 @@ const Home = () => {
     <div className="d-flex min-vh-100 flex-column justify-content-between">
       <Navbar />
       <MiniShoppingCart />
-      <Header />
+      {/* <Header /> */}
       <Section />
       <Footer />
     </div>

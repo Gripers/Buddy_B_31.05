@@ -3,7 +3,7 @@ import axios from "axios";
 import { useTranslation } from "react-i18next";
 import { makeStyles } from "@material-ui/core";
 import { useCart } from "react-use-cart";
-import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Context = createContext();
 
@@ -36,7 +36,7 @@ const ContextProvider = ({ children }) => {
   const [defuz, setDefuz] = useState("");
   const [defen, setDefen] = useState("");
   const [defru, setDefru] = useState("");
-  const [img, setImg] = useState("");
+  const [img, setImg] = useState(null);
   const [price, setPrice] = useState("");
   const [uuid, setUuid] = useState("");
   const [productModalData, setProductModalData] = useState();
@@ -51,6 +51,7 @@ const ContextProvider = ({ children }) => {
     setDefenn(data?.definition_en);
     setDefruu(data?.definition_ru);
     setImgg(data?.image);
+    setPricee(data?.price);
     setUid(data?.id);
   };
   const productClose = () => setProdOpen(false);
@@ -76,13 +77,17 @@ const ContextProvider = ({ children }) => {
   const [logconsms, setLogConSms] = useState("");
   const [logmes, setLogMes] = useState();
   const [logmescon, setLogMesCon] = useState();
+  const [openDrawer, setOpenDrawer] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   //states end
 
   //consts start
   const { t, i18n } = useTranslation();
   const qs = require("qs");
-  const navigate = useNavigate();
+
+  const lognotify = () => toast.error(logmes);
+  const logconnotify = () => toast.error(logmescon);
 
   const settings = {
     dots: false,
@@ -122,37 +127,11 @@ const ContextProvider = ({ children }) => {
   const categoryId = async (id) => {
     try {
       const res = await axios
-        .get(`https://buddyburger.herokuapp.com/categories/${id}`)
+        .get(`http://127.0.0.1:8000/categories/${id}`)
         .then((res) => setBurgers(res.data.burgers));
     } catch (error) {
       alert(error);
     }
-  };
-
-  const changeBtn = (id) => {
-    const activeBtn = burgers.map((burger) => {
-      if (burger.id === id) {
-        return {
-          ...burger,
-          isActive: true,
-        };
-      }
-      return burger;
-    });
-    setBurgers(activeBtn);
-  };
-
-  const rechangeBtn = (id) => {
-    const activeBtn = burgers.map((burger) => {
-      if (burger.id === id) {
-        return {
-          ...burger,
-          isActive: false,
-        };
-      }
-      return burger;
-    });
-    setBurgers(activeBtn);
   };
 
   const useStyles = makeStyles((theme) => ({
@@ -214,28 +193,30 @@ const ContextProvider = ({ children }) => {
     outline: "none",
   };
 
-  const { addItem, removeItem, updateItemQuantity, emptyCart, isEmpty, items } =
-    useCart();
-
-  const deleteCategory = async (id) => {
-    try {
-      const res = await axios
-        .delete(`https://buddyburger.herokuapp.com/categories/${id}/`)
-        .then(() => window.location.reload());
-    } catch (error) {
-      alert(error);
-    }
-  };
+  const {
+    addItem,
+    removeItem,
+    updateItemQuantity,
+    emptyCart,
+    isEmpty,
+    items,
+    getItem,
+  } = useCart();
 
   const addCategory = () => {
     axios
       .post(
-        "https://buddyburger.herokuapp.com/categories/",
+        "http://127.0.0.1:8000/categories/",
         qs.stringify({
           name_uz: nameuz,
           name_en: nameen,
           name_ru: nameru,
-        })
+        }),
+        {
+          headers: {
+            Authorization: `Token ${localStorage.getItem("token")}`,
+          },
+        }
       )
       .then(() => window.location.reload());
   };
@@ -244,12 +225,17 @@ const ContextProvider = ({ children }) => {
     try {
       const res = await axios
         .put(
-          `https://buddyburger.herokuapp.com/categories/${id}/`,
+          `http://127.0.0.1:8000/categories/${id}/`,
           qs.stringify({
             name_uz: editnameuz,
             name_en: editnameen,
             name_ru: editnameru,
-          })
+          }),
+          {
+            headers: {
+              Authorization: `Token ${localStorage.getItem("token")}`,
+            },
+          }
         )
         .then(() => window.location.reload());
     } catch (error) {
@@ -257,10 +243,14 @@ const ContextProvider = ({ children }) => {
     }
   };
 
-  const deleteProduct = async (id) => {
+  const deleteCategory = async (id) => {
     try {
       const res = await axios
-        .delete(`https://buddyburger.herokuapp.com/burgers/${id}/`)
+        .delete(`http://127.0.0.1:8000/categories/${id}/`, {
+          headers: {
+            Authorization: `Token ${localStorage.getItem("token")}`,
+          },
+        })
         .then(() => window.location.reload());
     } catch (error) {
       alert(error);
@@ -268,29 +258,33 @@ const ContextProvider = ({ children }) => {
   };
 
   const addProduct = () => {
-    axios
-      .post(
-        `https://buddyburger.herokuapp.com/burgers/`,
-        qs.stringify({
-          name_uz: prodnameuz,
-          name_en: prodnameen,
-          name_ru: prodnameru,
-          definition_uz: defuz,
-          definition_en: defen,
-          definition_ru: defru,
-          image: img,
-          price: price,
-          category: uuid,
-        })
-      )
-      .then(() => window.location.reload());
+    const formdata = new FormData();
+
+    formdata.append("name_uz", prodnameuz);
+    formdata.append("name_en", prodnameen);
+    formdata.append("name_ru", prodnameru);
+    formdata.append("definition_uz", defuz);
+    formdata.append("definition_en", defen);
+    formdata.append("definition_ru", defru);
+    formdata.append("image", img);
+    formdata.append("price", price);
+    formdata.append("category", uuid);
+
+    axios({
+      url: "http://127.0.0.1:8000/burgers/",
+      method: "POST",
+      headers: {
+        Authorization: `Token ${localStorage.getItem("token")}`,
+      },
+      data: formdata,
+    }).then(() => window.location.reload());
   };
 
   const editProduct = async (id) => {
     try {
       const res = await axios
         .put(
-          `https://buddyburger.herokuapp.com/burgers/${id}/`,
+          `http://127.0.0.1:8000/burgers/${id}/`,
           qs.stringify({
             name_uz: nameuzz,
             name_en: nameenn,
@@ -301,8 +295,27 @@ const ContextProvider = ({ children }) => {
             image: imgg,
             price: pricee,
             category: uid,
-          })
+          }),
+          {
+            headers: {
+              Authorization: `Token ${localStorage.getItem("token")}`,
+            },
+          }
         )
+        .then(() => window.location.reload());
+    } catch (error) {
+      alert(error);
+    }
+  };
+
+  const deleteProduct = async (id) => {
+    try {
+      const res = await axios
+        .delete(`http://127.0.0.1:8000/burgers/${id}/`, {
+          headers: {
+            Authorization: `Token ${localStorage.getItem("token")}`,
+          },
+        })
         .then(() => window.location.reload());
     } catch (error) {
       alert(error);
@@ -358,7 +371,8 @@ const ContextProvider = ({ children }) => {
       })
       .then((response) => {
         setLogMes(response.data.message);
-        if (response.data.status == "200") {
+        setLoading(false);
+        if (response.data.status == 200) {
           logErcon();
         }
       });
@@ -372,11 +386,13 @@ const ContextProvider = ({ children }) => {
       })
       .then((response) => {
         setLogMesCon(response.data.message);
+        setLoading(false);
         if ((response.data.status == 200) & (response.data.is_admin == false)) {
           localStorage.setItem("user", JSON.stringify(response.data));
           window.location.href = "/";
         } else if (response.data.is_admin == true) {
           localStorage.setItem("admin", JSON.stringify(response.data));
+          localStorage.setItem("token", response.data.token);
           window.location.href = "/admin";
         }
       });
@@ -390,7 +406,8 @@ const ContextProvider = ({ children }) => {
       })
       .then((response) => {
         setRegMes(response.data.message);
-        if (response.data.status == "200") {
+        setLoading(false);
+        if (response.data.status == 200) {
           registEr();
         }
       });
@@ -404,7 +421,8 @@ const ContextProvider = ({ children }) => {
       })
       .then((response) => {
         setCon(response.data.message);
-        if (response.data.status == "200") {
+        setLoading(false);
+        if (response.data.status == 200) {
           localStorage.setItem("user", response.data);
           window.location = "/";
         }
@@ -417,13 +435,13 @@ const ContextProvider = ({ children }) => {
 
   useEffect(() => {
     axios
-      .get("https://buddyburger.herokuapp.com/categories/")
+      .get("http://127.0.0.1:8000/categories/")
       .then((res) => setCategories(res.data));
   }, []);
 
   useEffect(() => {
     axios
-      .get("https://buddyburger.herokuapp.com/burgers/")
+      .get("http://127.0.0.1:8000/burgers/")
       .then((res) => setBurgers(res.data));
   }, []);
 
@@ -440,8 +458,6 @@ const ContextProvider = ({ children }) => {
           i18n,
           categoryId,
           setBurgers,
-          changeBtn,
-          rechangeBtn,
           open,
           cartOpen,
           cartClose,
@@ -550,6 +566,11 @@ const ContextProvider = ({ children }) => {
           setLogConSms,
           conEr,
           logConEr,
+          getItem,
+          openDrawer,
+          setOpenDrawer,
+          loading,
+          setLoading,
         }}
       >
         {children}

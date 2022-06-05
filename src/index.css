@@ -4,7 +4,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Proxima Nova Regular";
+  font-family: "Proxima Nova";
 }
 
 body {
@@ -49,7 +49,6 @@ input[type="number"] {
 
 .form-control {
   box-shadow: none !important;
-  padding: 3vh !important;
   min-width: 100% !important;
 }
 
@@ -59,4 +58,26 @@ ul {
 
 .Profile_Drop li:hover {
   color: #51267d !important;
+}
+
+.phone-input-qwerty {
+  padding: 3vh !important;
+}
+
+.MuiDialog-paper {
+  padding: 3vh !important;
+  min-width: 422px !important;
+  height: auto !important;
+  border-radius: 12px !important;
+}
+
+@media all and (max-width: 500px) {
+  .MuiDialog-paper {
+    margin: 0 !important;
+    min-width: 95% !important;
+    max-width: 95% !important;
+    max-height: auto !important;
+    overflow: hidden !important;
+    padding: 2vh !important;
+  }
 }

@@ -87,6 +87,9 @@
   },
   "profile": {
     "info": "Mening tafsilotlarim",
-    "out": "Chiqish"
+    "out": "Chiqish",
+    "name": "Ism",
+    "phone": "Telefon raqamingiz",
+    "update": "Yangilash"
   }
 }

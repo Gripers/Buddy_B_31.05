@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { Drawer, IconButton, makeStyles } from "@material-ui/core";
 import { NavLink } from "react-router-dom";
 import "../img/logo.svg";
@@ -8,6 +8,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import { useTranslation } from "react-i18next";
 import "../styles/drawer.scss";
 import logo from "../img/logo.svg";
+import { Context } from "../context";
 
 const useStyles = makeStyles(() => ({
   link: {
@@ -23,10 +24,12 @@ const useStyles = makeStyles(() => ({
 function DrawerComponent() {
   const classes = useStyles();
   const { t } = useTranslation();
-  const [openDrawer, setOpenDrawer] = useState(false);
+  const { openDrawer, setOpenDrawer, handleLogin } = useContext(Context);
+
   return (
     <>
       <Drawer
+        style={{ zIndex: "9999999" }}
         open={openDrawer}
         onClose={() => setOpenDrawer(false)}
         transitionDuration={500}
@@ -80,7 +83,9 @@ function DrawerComponent() {
           <MenuIcon />
         </IconButton>
         <img src={logo} alt="" />
-        <button className="drawer-sign-in-btn">{t("navbar.sign-in")}</button>
+        <button className="drawer-sign-in-btn" onClick={handleLogin}>
+          {t("navbar.sign-in")}
+        </button>
       </div>
     </>
   );

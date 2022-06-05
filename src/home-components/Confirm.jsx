@@ -1,8 +1,8 @@
-import { Dialog } from "@mui/material";
+import { CircularProgress, Dialog } from "@mui/material";
 import React, { useContext } from "react";
 import PhoneInput from "react-phone-input-2";
 import { Context } from "../context";
-import "../styles/confirm.scss";
+import "../styles/register.scss";
 
 const Confirm = () => {
   const {
@@ -16,6 +16,9 @@ const Confirm = () => {
     confirmRegister,
     con,
     conEr,
+    conregshow,
+    loading,
+    setLoading,
   } = useContext(Context);
 
   return (
@@ -40,18 +43,51 @@ const Confirm = () => {
             placeholder={`${t("sign.register.code")}`}
             value={smsform}
             onChange={(e) => setSmsForm(e.target.value)}
+            maxLength={6}
           />
           <PhoneInput
+            inputClass="phone-input-qwerty"
             value={registerDataNumber}
             onChange={setRegisterDataNumber}
             country="uz"
             prefix=""
             disabled
           />
-          <button type="button" onClick={confirmRegister}>
-            {t("sign.register.zareg")}
-          </button>
-          <p>{con}</p>
+          {smsform.length >= 6 ? (
+            <button
+              type="button"
+              onClick={() => {
+                setLoading(true);
+                confirmRegister();
+              }}
+            >
+              {loading ? (
+                <CircularProgress
+                  style={{ color: "white", width: "20px", height: "20px" }}
+                />
+              ) : (
+                t("sign.register.zareg")
+              )}
+            </button>
+          ) : (
+            <button
+              disabled
+              type="button"
+              onClick={() => {
+                setLoading(true);
+                confirmRegister();
+              }}
+            >
+              {loading ? (
+                <CircularProgress
+                  style={{ color: "white", width: "20px", height: "20px" }}
+                />
+              ) : (
+                t("sign.register.zareg")
+              )}
+            </button>
+          )}
+          {/* <p style={{ display: conregshow }}>{con}</p> */}
         </div>
         <div className="register-footer">
           <p>{t("sign.register.acc")}</p>

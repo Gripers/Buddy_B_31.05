@@ -1,4 +1,4 @@
-import { Dialog } from "@mui/material";
+import { CircularProgress, Dialog } from "@mui/material";
 import React, { useContext } from "react";
 import PhoneInput from "react-phone-input-2";
 import { Context } from "../context";
@@ -16,6 +16,9 @@ const Register = () => {
     registerPost,
     regmes,
     regswitchEr,
+    regshow,
+    loading,
+    setLoading,
   } = useContext(Context);
 
   return (
@@ -42,15 +45,47 @@ const Register = () => {
             onChange={(e) => setRegisterDataName(e.target.value)}
           />
           <PhoneInput
+            inputClass="phone-input-qwerty"
             value={registerDataNumber}
             onChange={setRegisterDataNumber}
             country="uz"
             prefix=""
           />
-          <button type="button" onClick={registerPost}>
-            {t("sign.register.zareg")}
-          </button>
-          <p>{regmes}</p>
+          {registerDataName.length >= 3 ? (
+            <button
+              type="button"
+              onClick={() => {
+                setLoading(true);
+                registerPost();
+              }}
+            >
+              {loading ? (
+                <CircularProgress
+                  style={{ color: "white", width: "20px", height: "20px" }}
+                />
+              ) : (
+                t("sign.register.zareg")
+              )}
+            </button>
+          ) : (
+            <button
+              disabled
+              type="button"
+              onClick={() => {
+                setLoading(true);
+                registerPost();
+              }}
+            >
+              {loading ? (
+                <CircularProgress
+                  style={{ color: "white", width: "20px", height: "20px" }}
+                />
+              ) : (
+                t("sign.register.zareg")
+              )}
+            </button>
+          )}
+          {/* <p style={{ display: regshow }}>{regmes}</p> */}
         </div>
         <div className="register-footer">
           <p>{t("sign.register.acc")}</p>

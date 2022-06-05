@@ -28,6 +28,8 @@ const AddProduct = () => {
     addProduct,
   } = useContext(Context);
 
+  console.log(img);
+
   return (
     <div className="home">
       <Sidebar />
@@ -78,9 +80,8 @@ const AddProduct = () => {
           />
           <input
             className="form-control"
-            type="text"
-            value={img}
-            onChange={(e) => setImg(e.target.value)}
+            type="file"
+            onChange={(e) => setImg(e.target.files[0])}
             placeholder="Image Url"
           />
           <input
@@ -96,6 +97,7 @@ const AddProduct = () => {
             style={{ boxShadow: "none" }}
             onChange={(e) => setUuid(e.target.value)}
           >
+            <option value="">Choose category</option>
             {categories.map((cat) => {
               return (
                 <option key={cat.id} value={cat.id}>
@@ -104,7 +106,9 @@ const AddProduct = () => {
               );
             })}
           </select>
-          <button className="btn btn-primary" onClick={addProduct}>ADD</button>
+          <button className="btn btn-primary" onClick={addProduct}>
+            ADD
+          </button>
         </div>
       </div>
     </div>

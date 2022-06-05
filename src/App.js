@@ -8,6 +8,8 @@ import FilialTwoInner from "./filial-components/FilialTwoInner";
 import AboutUs from "./pages/AboutUs";
 import Contacts from "./pages/Contacts";
 import PutPatch from "./PutPatch";
+import UserInfo from "./pages/UserInfo";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
@@ -20,7 +22,20 @@ function App() {
         <Route path="/filialone" element={<FilialOneInner />} />
         <Route path="/filialtwo" element={<FilialTwoInner />} />
         <Route path="/patcher" element={<PutPatch />} />
+        <Route path="/userinfo" element={<UserInfo />} />
       </Routes>
+
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 }

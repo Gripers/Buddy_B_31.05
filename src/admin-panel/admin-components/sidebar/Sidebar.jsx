@@ -51,7 +51,14 @@ const Sidebar = () => {
           </li>
           <li>
             <ExitToAppIcon className="icon" />
-            <span>Logout</span>
+            <span
+              onClick={() => {
+                localStorage.removeItem("admin");
+                window.location.reload();
+              }}
+            >
+              Logout
+            </span>
           </li>
         </ul>
       </div>

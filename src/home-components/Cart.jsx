@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { Context } from "../context";
 import "../styles/cart.scss";
 import axios from "axios";
@@ -15,6 +15,7 @@ const Cart = () => {
     updateItemQuantity,
     emptyCart,
     i18n,
+    handleLogin,
   } = useContext(Context);
 
   let totalPrice = 0;
@@ -39,11 +40,10 @@ ${item.count} x ${item.price} = ${item.count * item.price} UZS`;
     );
   };
 
-  useEffect(() => {
-    if (isEmpty) {
-      document.getElementById("cart-burgers").style.display = "none";
-    }
-  }, []);
+  const funcs = () => {
+    sendProducts();
+    emptyCart();
+  };
 
   return (
     <Box sx={style}>
@@ -63,7 +63,11 @@ ${item.count} x ${item.price} = ${item.count * item.price} UZS`;
       ) : (
         <p></p>
       )}
-      <div className="cart-burgers" id="cart-burgers">
+      <div
+        className="cart-burgers"
+        id="cart-burgers"
+        style={{ display: isEmpty ? "none" : "block" }}
+      >
         {items &&
           items.map((item) => {
             if (item.count >= 1) {
@@ -123,10 +127,11 @@ ${item.count} x ${item.price} = ${item.count * item.price} UZS`;
       {items.length >= 1 ? (
         <button
           className="send-products-btn"
-          onClick={() => {
-            sendProducts();
-            emptyCart();
-          }}
+          onClick={() =>
+            localStorage.getItem("user") || localStorage.getItem("admin")
+              ? funcs()
+              : handleLogin()
+          }
         >
           <p>{t("cart.send")}</p>
           <p>{totalPrice} UZS</p>

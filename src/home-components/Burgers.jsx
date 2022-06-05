@@ -6,7 +6,7 @@ import { Context } from "../context";
 import "../styles/burgers.scss";
 
 const Burgers = () => {
-  const { burgers, t, i18n, changeBtn, rechangeBtn, addItem, removeItem } =
+  const { burgers, t, i18n, addItem, removeItem, getItem } =
     useContext(Context);
 
   return (
@@ -28,25 +28,23 @@ const Burgers = () => {
                 </h4>
                 <div className="card-order">
                   <p>{burger.price} UZS</p>
-                  {!burger.isActive ? (
+                  {getItem(burger.id) ? (
                     <button
                       className="change-btn"
                       onClick={() => {
-                        changeBtn(burger.id);
-                        addItem(burger);
+                        removeItem(burger.id);
                       }}
                     >
-                      {t("btn.choose")}
+                      {t("btn.back")}
                     </button>
                   ) : (
                     <button
                       className="change-btn"
                       onClick={() => {
-                        rechangeBtn(burger.id);
-                        removeItem(burger.id);
+                        addItem(burger);
                       }}
                     >
-                      {t("btn.back")}
+                      {t("btn.choose")}
                     </button>
                   )}
                 </div>
