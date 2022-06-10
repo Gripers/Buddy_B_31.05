@@ -12,7 +12,7 @@ const Footer = () => {
   const { t } = useContext(Context);
 
   return (
-    <div className="footer-container mt-5">
+    <div className="footer-container">
       <div className="container">
         <div className="logo-div">
           <img src={logo} alt="" />

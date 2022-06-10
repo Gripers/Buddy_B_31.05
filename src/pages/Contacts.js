@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 
-import Navbar from "../home-components/Navbar";
 import Footer from "../home-components/Footer";
 import { Context } from "../context";
 import "../styles/contacts.scss";
+import Navbar from "../home-components/Navbar";
 
 const Contacts = () => {
   const { t } = useContext(Context);

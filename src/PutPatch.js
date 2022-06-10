@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Modal, Box } from "@mui/material";
-
 const PutPatch = () => {
   const [value, setValue] = useState("");
   const [categories, setCategories] = useState([]);
@@ -14,7 +13,6 @@ const PutPatch = () => {
   const handleClose = () => {
     setOpen(false);
   };
-
   const style = {
     position: "absolute",
     top: "50%",
@@ -29,7 +27,6 @@ const PutPatch = () => {
     p: 4,
     outline: "none",
   };
-
   const patcherr = async (id) => {
     try {
       axios.patch(`https://buddyburger.herokuapp.com/categories/${id}/`, {
@@ -39,39 +36,40 @@ const PutPatch = () => {
       alert(error);
     }
   };
-
   useEffect(() => {
     axios
       .get("https://buddyburger.herokuapp.com/categories/")
       .then((res) => setCategories(res.data));
   }, []);
-
   return (
     <>
+      {" "}
       <div className="categoriessss d-flex justify-content-around">
+        {" "}
         {categories.map((cat) => {
           return (
             <div className="categoryyyy bg-white">
-              <h1>{cat.name_ru}</h1>
-              <button onClick={() => handleOpen(cat)}>Edit</button>
+              {" "}
+              <h1>{cat.name_ru}</h1>{" "}
+              <button onClick={() => handleOpen(cat)}>Edit</button>{" "}
             </div>
           );
-        })}
-      </div>
-
+        })}{" "}
+      </div>{" "}
       <Modal open={open} onClose={handleClose}>
+        {" "}
         <Box sx={style}>
+          {" "}
           <input
             type="text"
             placeholder={`${modalData?.name_ru}`}
             value={value}
             onChange={(e) => setValue(e.target.value)}
-          />
-          <button onClick={() => patcherr(modalData?.id)}>Put</button>
-        </Box>
-      </Modal>
+          />{" "}
+          <button onClick={() => patcherr(modalData?.id)}>Put</button>{" "}
+        </Box>{" "}
+      </Modal>{" "}
     </>
   );
 };
-
 export default PutPatch;

@@ -1,10 +1,15 @@
-@import url(fonts/Proxima-Nova/style.css);
+@font-face {
+  font-family: Proxima-Nova;
+  src: url(fonts/ProximaNova-Regular/ProximaNova-Regular.db098dc77c7aafe660e58e9eb280be48.ttf)
+    format("truetype");
+  font-style: normal;
+}
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Proxima Nova";
+  font-family: Proxima-Nova, sans-serif;
 }
 
 body {
@@ -69,6 +74,14 @@ ul {
   min-width: 422px !important;
   height: auto !important;
   border-radius: 12px !important;
+}
+
+img {
+  user-select: none !important;
+}
+
+.topbar {
+  height: 12px !important;
 }
 
 @media all and (max-width: 500px) {

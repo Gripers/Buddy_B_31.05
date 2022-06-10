@@ -3,12 +3,13 @@ import axios from "axios";
 import { useTranslation } from "react-i18next";
 import { makeStyles } from "@material-ui/core";
 import { useCart } from "react-use-cart";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 
 const Context = createContext();
 
 const ContextProvider = ({ children }) => {
   //states start
+
   const [categories, setCategories] = useState([]);
   const [burgers, setBurgers] = useState([]);
   const [nameuz, setNameuz] = useState("");
@@ -61,7 +62,7 @@ const ContextProvider = ({ children }) => {
   const [defuzz, setDefuzz] = useState("");
   const [defenn, setDefenn] = useState("");
   const [defruu, setDefruu] = useState("");
-  const [imgg, setImgg] = useState("");
+  const [imgg, setImgg] = useState(null);
   const [pricee, setPricee] = useState("");
   const [uid, setUid] = useState("");
   const [login, setLogin] = useState(false);
@@ -88,6 +89,8 @@ const ContextProvider = ({ children }) => {
 
   const lognotify = () => toast.error(logmes);
   const logconnotify = () => toast.error(logmescon);
+  const regnotify = () => toast.error(regmes);
+  const regconnotify = () => toast.error(con);
 
   const settings = {
     dots: false,
@@ -281,28 +284,29 @@ const ContextProvider = ({ children }) => {
   };
 
   const editProduct = async (id) => {
+    const formdata = new FormData();
+
+    formdata.append("name_uz", nameuzz);
+    formdata.append("name_en", nameenn);
+    formdata.append("name_ru", nameruu);
+    formdata.append("definition_uz", defuzz);
+    formdata.append("definition_en", defenn);
+    formdata.append("definition_ru", defruu);
+    if (typeof imgg != "string") {
+      formdata.append("image", imgg);
+    }
+    formdata.append("price", pricee);
+    formdata.append("category", uid);
+
     try {
-      const res = await axios
-        .put(
-          `http://127.0.0.1:8000/burgers/${id}/`,
-          qs.stringify({
-            name_uz: nameuzz,
-            name_en: nameenn,
-            name_ru: nameruu,
-            definition_uz: defuzz,
-            definition_en: defenn,
-            definition_ru: defruu,
-            image: imgg,
-            price: pricee,
-            category: uid,
-          }),
-          {
-            headers: {
-              Authorization: `Token ${localStorage.getItem("token")}`,
-            },
-          }
-        )
-        .then(() => window.location.reload());
+      const res = await axios({
+        url: `http://127.0.0.1:8000/burgers/${id}/`,
+        method: "PUT",
+        headers: {
+          Authorization: `Token ${localStorage.getItem("token")}`,
+        },
+        data: formdata,
+      }).then(() => window.location.reload());
     } catch (error) {
       alert(error);
     }
@@ -374,6 +378,8 @@ const ContextProvider = ({ children }) => {
         setLoading(false);
         if (response.data.status == 200) {
           logErcon();
+        } else if (response.data.status == 400) {
+          lognotify();
         }
       });
   };
@@ -394,6 +400,8 @@ const ContextProvider = ({ children }) => {
           localStorage.setItem("admin", JSON.stringify(response.data));
           localStorage.setItem("token", response.data.token);
           window.location.href = "/admin";
+        } else if (response.data.status == 400) {
+          logconnotify();
         }
       });
   };
@@ -409,6 +417,8 @@ const ContextProvider = ({ children }) => {
         setLoading(false);
         if (response.data.status == 200) {
           registEr();
+        } else if (response.data.status == 400) {
+          regnotify();
         }
       });
   };
@@ -424,7 +434,9 @@ const ContextProvider = ({ children }) => {
         setLoading(false);
         if (response.data.status == 200) {
           localStorage.setItem("user", response.data);
-          window.location = "/";
+          window.location.href = "/";
+        } else if (response.data.status == 400) {
+          regconnotify();
         }
       });
   };

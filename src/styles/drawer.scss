@@ -10,11 +10,9 @@
   color: white;
   font-weight: bold;
 }
-
 .MuiDrawer-paper {
   min-width: 60%;
 }
-
 .drawer-upper {
   display: flex;
   justify-content: space-between;
@@ -26,13 +24,12 @@
     height: 24px;
   }
 }
-
 .drawer-downer {
   margin-top: 40%;
   .navi-links {
     display: grid;
     height: 240px;
-    margin-left: 15%;
+    margin-left: 10%;
     a {
       font-weight: bold;
       color: black;

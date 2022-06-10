@@ -22,15 +22,6 @@ const Sidebar = () => {
             <DashboardIcon className="icon" />
             <Link to="/admin">Dashboard</Link>
           </li>
-          <p className="title">ADD</p>
-          <li>
-            <AddCircleIcon className="icon" />
-            <Link to="/addproduct">Add product</Link>
-          </li>
-          <li>
-            <AddCircleIcon className="icon" />
-            <Link to="/addcategory">Add category</Link>
-          </li>
           <p className="title">LISTS MENU</p>
           <li>
             <GroupIcon className="icon" />

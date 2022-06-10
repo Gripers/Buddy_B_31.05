@@ -3,7 +3,6 @@ import React, { useContext } from "react";
 import PhoneInput from "react-phone-input-2";
 import { Context } from "../context";
 import "../styles/login.scss";
-import { ToastContainer } from "react-toastify";
 
 const LogConfirm = () => {
   const {
@@ -19,6 +18,13 @@ const LogConfirm = () => {
     loading,
     setLoading,
   } = useContext(Context);
+
+  const enterPress = (event) => {
+    if (event.key === "Enter") {
+      setLoading(true);
+      confirmLogin();
+    }
+  };
 
   return (
     <>
@@ -45,6 +51,8 @@ const LogConfirm = () => {
               value={logconsms}
               onChange={(e) => setLogConSms(e.target.value)}
               maxLength={6}
+              onKeyDown={enterPress}
+              autoFocus
             />
             <PhoneInput
               inputClass="phone-input-qwerty"

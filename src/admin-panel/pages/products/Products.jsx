@@ -4,6 +4,7 @@ import Navbar from "../../admin-components/navbar/Navbar";
 import "./products.scss";
 import { Context } from "../../../context";
 import { Box, Modal } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const Products = () => {
   const {
@@ -34,6 +35,7 @@ const Products = () => {
     productModalData,
     categories,
     editProduct,
+    img,
   } = useContext(Context);
 
   return (
@@ -51,6 +53,7 @@ const Products = () => {
                 <th scope="col">PRODUCT IMAGE</th>
                 <th scope="col">PRODUCT NAME</th>
                 <th scope="col">PRICE</th>
+                <th scope="col">CATEGORY</th>
               </tr>
             </thead>
             <tbody>
@@ -75,6 +78,9 @@ const Products = () => {
                     <td className="align-middle" style={{ fontWeight: "bold" }}>
                       {burger.price} UZS
                     </td>
+                    <td className="align-middle" style={{ fontWeight: "bold" }}>
+                      {burger.category.name_ru}
+                    </td>
                     <td className="align-middle">
                       <button
                         className="tm-product-delete-link btn btn-danger"
@@ -83,12 +89,14 @@ const Products = () => {
                         Delete
                       </button>
                       <button
-                        className="tm-product-delete-link btn btn-primary"
-                        style={{ marginLeft: "5px" }}
+                        className="tm-product-delete-link btn btn-primary mx-2"
                         onClick={() => productOpen(burger)}
                       >
                         Edit
                       </button>
+                      <Link to="/addproduct">
+                        <button className="btn btn-success">Add</button>
+                      </Link>
                     </td>
                   </tr>
                 );
@@ -145,9 +153,8 @@ const Products = () => {
             />
             <input
               className="form-control"
-              type="text"
-              value={imgg}
-              onChange={(e) => setImgg(e.target.value)}
+              type="file"
+              onChange={(e) => setImgg(e.target.files[0])}
               placeholder="Image Url"
             />
             <input
@@ -163,6 +170,7 @@ const Products = () => {
               style={{ boxShadow: "none" }}
               onChange={(e) => setUid(e.target.value)}
             >
+              <option value="">Select category</option>
               {categories.map((cat) => {
                 return (
                   <option key={cat.id} value={cat.id}>

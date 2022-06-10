@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Drawer, IconButton, makeStyles } from "@material-ui/core";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "../img/logo.svg";
 
 import MenuIcon from "@material-ui/icons/Menu";
@@ -51,24 +51,28 @@ function DrawerComponent() {
             <NavLink
               className={({ isActive }) => (isActive ? "active" : "unactive")}
               to="/"
+              onClick={() => setOpenDrawer(false)}
             >
               {t("navbar.home")}
             </NavLink>
             <NavLink
               className={({ isActive }) => (isActive ? "active" : "unactive")}
               to="/filials"
+              onClick={() => setOpenDrawer(false)}
             >
               {t("navbar.filials")}
             </NavLink>
             <NavLink
               className={({ isActive }) => (isActive ? "active" : "unactive")}
               to="/aboutus"
+              onClick={() => setOpenDrawer(false)}
             >
               {t("navbar.about-us")}
             </NavLink>
             <NavLink
               className={({ isActive }) => (isActive ? "active" : "unactive")}
               to="/contacts"
+              onClick={() => setOpenDrawer(false)}
             >
               {t("navbar.contacts")}
             </NavLink>
@@ -82,7 +86,9 @@ function DrawerComponent() {
         >
           <MenuIcon />
         </IconButton>
-        <img src={logo} alt="" />
+        <Link to="/">
+          <img src={logo} alt="" />
+        </Link>
         <button className="drawer-sign-in-btn" onClick={handleLogin}>
           {t("navbar.sign-in")}
         </button>

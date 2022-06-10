@@ -16,7 +16,7 @@ const MiniShoppingCart = () => {
     isEmpty,
     removeItem,
     emptyCart,
-    openDrawer,
+    handleLogin,
   } = useContext(Context);
   const [open, setOpen] = useState(false);
 
@@ -40,6 +40,17 @@ ${item.count} x ${item.price} = ${item.count * item.price} UZS`;
 <b>Сумма:</b> ${totalPrice} UZS`
       )}&parse_mode=html`
     );
+  };
+
+  const funcs = () => {
+    sendProducts();
+    emptyCart();
+    window.location.href = "/";
+  };
+
+  const secfuncs = () => {
+    setOpen(false);
+    handleLogin();
   };
 
   return (
@@ -152,10 +163,11 @@ ${item.count} x ${item.price} = ${item.count * item.price} UZS`;
           <div className="mini-cart-drawer-foot">
             <button
               className="mini-cart-send-products-btn"
-              onClick={() => {
-                sendProducts();
-                emptyCart();
-              }}
+              onClick={() =>
+                localStorage.getItem("user") || localStorage.getItem("admin")
+                  ? funcs()
+                  : secfuncs()
+              }
             >
               <p>{t("cart.send")}</p>
               <p>{totalPrice} UZS</p>

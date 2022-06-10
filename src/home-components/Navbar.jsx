@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import {
   AppBar,
   Toolbar,
@@ -8,11 +8,11 @@ import {
   useMediaQuery,
 } from "@material-ui/core";
 import DrawerComponent from "./Drawer";
+import { Link, NavLink } from "react-router-dom";
 
 import logo from "../img/logo.svg";
 import "../styles/navbar.scss";
 import cart from "../img/shopping-cart.svg";
-import { NavLink } from "react-router-dom";
 import { Context } from "../context";
 import Cart from "./Cart";
 import { Modal } from "@mui/material";
@@ -58,7 +58,9 @@ function Navbar() {
             <>
               <div className="start">
                 <Typography variant="h4" className={classes.logo}>
-                  <img src={logo} alt="" />
+                  <Link to="/">
+                    <img src={logo} alt="" />
+                  </Link>
                 </Typography>
                 <div className={classes.navlinks}>
                   <NavLink

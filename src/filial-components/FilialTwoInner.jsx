@@ -3,7 +3,7 @@ import { Context } from "../context";
 import Footer from "../home-components/Footer";
 import Navbar from "../home-components/Navbar";
 
-import "../styles/filialtwoinner.scss";
+import "../styles/filialinner.scss";
 
 const FilialTwoInner = () => {
   const { t } = useContext(Context);
@@ -16,7 +16,9 @@ const FilialTwoInner = () => {
         style={{ boxShadow: "0 4px 30px rgb(0 0 0 / 7%)" }}
       >
         <div className="left-box">
-          <h1>{t("filials.second.inner.name")}</h1>
+          <h1 className="text-uppercase text-black">
+            {t("filials.second.inner.name")}
+          </h1>
           <div className="mini-titles mt-4">
             <p>{t("filials.second.inner.adress")}</p>
             <p>{t("filials.second.inner.worktime")}</p>

@@ -8,10 +8,6 @@ const Navbar = () => {
       <div className="wrapper">
         <div className="items">
           <div className="item">
-            <LanguageIcon className="icon" />
-            English
-          </div>
-          <div className="item">
             <Brightness4Icon className="icon" />
           </div>
           <div className="item">

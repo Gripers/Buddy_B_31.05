@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../context";
 
-import "../styles/filial-one.scss";
+import "../styles/filial.scss";
 
 const FilialOne = () => {
   const { t } = useContext(Context);

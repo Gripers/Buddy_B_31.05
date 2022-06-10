@@ -1,21 +1,33 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+
+import { Toaster } from "react-hot-toast";
+import PreLoader from "./PreLoader";
 import { Routes, Route } from "react-router-dom";
 
 import Home from "./pages/Home";
 import Filials from "./pages/Filials";
-import FilialOneInner from "./filial-components/FilialOneInner";
-import FilialTwoInner from "./filial-components/FilialTwoInner";
 import AboutUs from "./pages/AboutUs";
 import Contacts from "./pages/Contacts";
+import FilialOneInner from "./filial-components/FilialOneInner";
+import FilialTwoInner from "./filial-components/FilialTwoInner";
 import PutPatch from "./PutPatch";
 import UserInfo from "./pages/UserInfo";
-import { ToastContainer } from "react-toastify";
 
-function App() {
+const App = () => {
+  const [isLoading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+  }, []);
+
+  if (!isLoading) {
+    return <PreLoader />;
+  }
+
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route index element={<Home />} />
         <Route path="/filials" element={<Filials />} />
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/contacts" element={<Contacts />} />
@@ -25,19 +37,9 @@ function App() {
         <Route path="/userinfo" element={<UserInfo />} />
       </Routes>
 
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
+      <Toaster position="top-right" />
     </div>
   );
-}
+};
 
 export default App;

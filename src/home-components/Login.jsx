@@ -4,7 +4,6 @@ import { Context } from "../context";
 import "../styles/login.scss";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-import { ToastContainer } from "react-toastify";
 
 const Login = () => {
   const {
@@ -18,6 +17,13 @@ const Login = () => {
     loading,
     setLoading,
   } = useContext(Context);
+
+  const enterPress = (event) => {
+    if (event.key === "Enter") {
+      setLoading(true);
+      loginPost();
+    }
+  };
 
   return (
     <>
@@ -47,6 +53,7 @@ const Login = () => {
               onChange={setLog}
               country="uz"
               prefix=""
+              onKeyDown={enterPress}
             />
             {log.length >= 12 ? (
               <button

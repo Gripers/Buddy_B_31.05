@@ -4,6 +4,7 @@ import Sidebar from "../../admin-components/sidebar/Sidebar";
 import { Context } from "../../../context";
 import "./categories.scss";
 import { Box, Modal } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const Categories = () => {
   const {
@@ -42,7 +43,6 @@ const Categories = () => {
                 <th>Name Uz</th>
                 <th>Name En</th>
                 <th>Name Ru</th>
-                <th className="text-end">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -58,33 +58,22 @@ const Categories = () => {
                     <td className="align-middle">
                       {cat.name_ru ? cat.name_ru : "Not Specified"}
                     </td>
-                    <td className="text-end align-middle">
-                      <div className="dropdown">
-                        <a
-                          data-bs-toggle="dropdown"
-                          className="btn btn-transparent border"
-                          href="/category"
-                          aria-expanded="false"
-                        >
-                          ...
-                        </a>
-                        <div className="dropdown-menu">
-                          <a
-                            className="dropdown-item"
-                            onClick={() => categoryOpen(cat)}
-                            style={{ cursor: "pointer" }}
-                          >
-                            Edit Category
-                          </a>
-                          <a
-                            className="dropdown-item text-danger"
-                            onClick={() => deleteCategory(cat.id)}
-                            style={{ cursor: "pointer" }}
-                          >
-                            Delete
-                          </a>
-                        </div>
-                      </div>
+                    <td className="align-middle d-flex">
+                      <button
+                        className="btn btn-danger"
+                        onClick={() => deleteCategory(cat.id)}
+                      >
+                        Delete
+                      </button>
+                      <button
+                        className="btn btn-primary mx-2"
+                        onClick={() => categoryOpen(cat)}
+                      >
+                        Edit Category
+                      </button>
+                      <Link to="/addcategory">
+                        <button className="btn btn-success">Add</button>
+                      </Link>
                     </td>
                   </tr>
                 );

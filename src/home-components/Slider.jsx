@@ -22,7 +22,7 @@ const Slider = () => {
               .then((res) => setBurgers(res.data))
           }
         >
-          <h5>{t("categories.all")}</h5>
+          <p>{t("categories.all")}</p>
         </div>
         {categories.map((cat) => {
           return (
@@ -31,7 +31,7 @@ const Slider = () => {
               className="category"
               onClick={() => categoryId(cat.id)}
             >
-              <h5>{i18n.language === "ru" ? cat.name_ru : cat.name_uz}</h5>
+              <p>{i18n.language === "ru" ? cat.name_ru : cat.name_uz}</p>
             </div>
           );
         })}

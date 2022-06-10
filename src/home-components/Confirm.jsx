@@ -14,9 +14,7 @@ const Confirm = () => {
     registerDataNumber,
     setRegisterDataNumber,
     confirmRegister,
-    con,
     conEr,
-    conregshow,
     loading,
     setLoading,
   } = useContext(Context);
