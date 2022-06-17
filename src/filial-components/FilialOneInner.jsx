@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { Context } from "../context";
 import Footer from "../home-components/Footer";
-import Navbar from "../home-components/Navbar";
 
 import "../styles/filialinner.scss";
 
@@ -10,7 +9,6 @@ const FilialOneInner = () => {
 
   return (
     <>
-      <Navbar />
       <div
         className="filial-glav-box my-5"
         style={{ boxShadow: "0 4px 30px rgb(0 0 0 / 7%)" }}

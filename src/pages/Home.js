@@ -1,13 +1,22 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import Footer from "../home-components/Footer";
 import MiniShoppingCart from "../home-components/MiniShoppingCart";
-import Navbar from "../home-components/Navbar";
+import Header from "../home-components/Header";
 import Section from "../home-components/Section";
+import NProgress from "nprogress";
+import { Context } from "../context";
 
 const Home = () => {
+  const { setHomeCol } = useContext(Context);
+
+  useEffect(() => {
+    NProgress.done();
+    setHomeCol("#51267d");
+  }, []);
+
   return (
     <div className="d-flex min-vh-100 flex-column justify-content-between">
-      <Navbar />
+      <Header />
       <MiniShoppingCart />
       <Section />
       <Footer />

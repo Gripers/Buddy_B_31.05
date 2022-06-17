@@ -45,7 +45,7 @@ ${item.count} x ${item.price} = ${item.count * item.price} UZS`;
   const funcs = () => {
     sendProducts();
     emptyCart();
-    window.location.href = "/";
+    setOpen(false);
   };
 
   const secfuncs = () => {

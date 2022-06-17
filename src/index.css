@@ -11,6 +11,10 @@
   box-sizing: border-box;
   font-family: Proxima-Nova, sans-serif;
 }
+*::selection {
+  color: white;
+  background: #51267d;
+}
 
 body {
   max-width: 100% !important;
@@ -28,14 +32,6 @@ body {
 ::-webkit-scrollbar-thumb {
   background: #51267d;
   border-radius: 12px;
-}
-
-.MuiPaper-root {
-  overflow-y: hidden !important;
-}
-
-.dropdown-menu.show {
-  position: fixed !important;
 }
 
 input::-webkit-outer-spin-button,

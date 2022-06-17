@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { makeStyles } from "@material-ui/core";
 import { useCart } from "react-use-cart";
 import toast from "react-hot-toast";
+import NProgress from "nprogress";
 
 const Context = createContext();
 
@@ -80,6 +81,11 @@ const ContextProvider = ({ children }) => {
   const [logmescon, setLogMesCon] = useState();
   const [openDrawer, setOpenDrawer] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [navshow, setNavshow] = useState("block");
+  const [homeCol, setHomeCol] = useState("black");
+  const [filialsCol, setFilialsCol] = useState("black");
+  const [aboutusCol, setAboutusCol] = useState("black");
+  const [contactsCol, setContactsCol] = useState("black");
 
   //states end
 
@@ -92,12 +98,21 @@ const ContextProvider = ({ children }) => {
   const regnotify = () => toast.error(regmes);
   const regconnotify = () => toast.error(con);
 
-  const settings = {
+  const headsettings = {
+    dots: false,
+    infinite: true,
+    arrows: false,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
+
+  const catsettings = {
     dots: false,
     arrows: false,
     infinite: false,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: 5,
     slidesToScroll: 1,
     responsive: [
       {
@@ -107,7 +122,7 @@ const ContextProvider = ({ children }) => {
         },
       },
       {
-        breakpoint: 600,
+        breakpoint: 737,
         settings: {
           slidesToShow: 3,
         },
@@ -130,7 +145,7 @@ const ContextProvider = ({ children }) => {
   const categoryId = async (id) => {
     try {
       const res = await axios
-        .get(`http://127.0.0.1:8000/categories/${id}`)
+        .get(`https://kannas.uz/categories/${id}`)
         .then((res) => setBurgers(res.data.burgers));
     } catch (error) {
       alert(error);
@@ -209,7 +224,7 @@ const ContextProvider = ({ children }) => {
   const addCategory = () => {
     axios
       .post(
-        "http://127.0.0.1:8000/categories/",
+        "https://kannas.uz/categories/",
         qs.stringify({
           name_uz: nameuz,
           name_en: nameen,
@@ -228,7 +243,7 @@ const ContextProvider = ({ children }) => {
     try {
       const res = await axios
         .put(
-          `http://127.0.0.1:8000/categories/${id}/`,
+          `https://kannas.uz/categories/${id}/`,
           qs.stringify({
             name_uz: editnameuz,
             name_en: editnameen,
@@ -249,7 +264,7 @@ const ContextProvider = ({ children }) => {
   const deleteCategory = async (id) => {
     try {
       const res = await axios
-        .delete(`http://127.0.0.1:8000/categories/${id}/`, {
+        .delete(`https://kannas.uz/categories/${id}/`, {
           headers: {
             Authorization: `Token ${localStorage.getItem("token")}`,
           },
@@ -274,7 +289,7 @@ const ContextProvider = ({ children }) => {
     formdata.append("category", uuid);
 
     axios({
-      url: "http://127.0.0.1:8000/burgers/",
+      url: "https://kannas.uz/burgers/",
       method: "POST",
       headers: {
         Authorization: `Token ${localStorage.getItem("token")}`,
@@ -300,7 +315,7 @@ const ContextProvider = ({ children }) => {
 
     try {
       const res = await axios({
-        url: `http://127.0.0.1:8000/burgers/${id}/`,
+        url: `https://kannas.uz/burgers/${id}/`,
         method: "PUT",
         headers: {
           Authorization: `Token ${localStorage.getItem("token")}`,
@@ -315,7 +330,7 @@ const ContextProvider = ({ children }) => {
   const deleteProduct = async (id) => {
     try {
       const res = await axios
-        .delete(`http://127.0.0.1:8000/burgers/${id}/`, {
+        .delete(`https://kannas.uz/burgers/${id}/`, {
           headers: {
             Authorization: `Token ${localStorage.getItem("token")}`,
           },
@@ -370,7 +385,7 @@ const ContextProvider = ({ children }) => {
 
   const loginPost = () => {
     axios
-      .post("http://127.0.0.1:8000/send_sms/", {
+      .post("https://kannas.uz/send_sms/", {
         phone_number: log,
       })
       .then((response) => {
@@ -386,7 +401,7 @@ const ContextProvider = ({ children }) => {
 
   const confirmLogin = () => {
     axios
-      .post("http://127.0.0.1:8000/login/", {
+      .post("https://kannas.uz/login/", {
         sms: logconsms,
         phone_number: log,
       })
@@ -408,7 +423,7 @@ const ContextProvider = ({ children }) => {
 
   const registerPost = () => {
     axios
-      .post("http://127.0.0.1:8000/register/", {
+      .post("https://kannas.uz/register/", {
         full_name: registerDataName,
         phone_number: registerDataNumber,
       })
@@ -425,7 +440,7 @@ const ContextProvider = ({ children }) => {
 
   const confirmRegister = () => {
     axios
-      .post("http://127.0.0.1:8000/login/", {
+      .post("https://kannas.uz/login/", {
         sms: smsform,
         phone_number: registerDataNumber,
       })
@@ -447,24 +462,28 @@ const ContextProvider = ({ children }) => {
 
   useEffect(() => {
     axios
-      .get("http://127.0.0.1:8000/categories/")
+      .get("https://kannas.uz/categories/")
       .then((res) => setCategories(res.data));
   }, []);
 
   useEffect(() => {
-    axios
-      .get("http://127.0.0.1:8000/burgers/")
-      .then((res) => setBurgers(res.data));
+    axios.get("https://kannas.uz/burgers/").then((res) => setBurgers(res.data));
   }, []);
 
   //effects end
+
+  if (!categories) {
+    return "";
+  }
+
+  NProgress.configure({ showSpinner: false, easing: "ease" });
 
   return (
     <div>
       <Context.Provider
         value={{
           categories,
-          settings,
+          catsettings,
           burgers,
           t,
           i18n,
@@ -583,6 +602,17 @@ const ContextProvider = ({ children }) => {
           setOpenDrawer,
           loading,
           setLoading,
+          navshow,
+          setNavshow,
+          homeCol,
+          setHomeCol,
+          filialsCol,
+          setFilialsCol,
+          aboutusCol,
+          setAboutusCol,
+          contactsCol,
+          setContactsCol,
+          headsettings,
         }}
       >
         {children}

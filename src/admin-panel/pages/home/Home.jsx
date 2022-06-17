@@ -1,10 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import Sidebar from "../../admin-components/sidebar/Sidebar";
 import Navbar from "../../admin-components/navbar/Navbar";
 import "./home.scss";
 import { useNavigate } from "react-router-dom";
+import { Context } from "../../../context";
 
 const Home = () => {
+  const { setNavshow } = useContext(Context);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -13,6 +15,10 @@ const Home = () => {
     } else if (!localStorage.getItem("admin")) {
       navigate("/");
     }
+  }, []);
+
+  useEffect(() => {
+    setNavshow("none");
   }, []);
 
   return (

@@ -16,6 +16,7 @@ const Cart = () => {
     emptyCart,
     i18n,
     handleLogin,
+    cartClose,
   } = useContext(Context);
 
   let totalPrice = 0;
@@ -43,7 +44,12 @@ ${item.count} x ${item.price} = ${item.count * item.price} UZS`;
   const funcs = () => {
     sendProducts();
     emptyCart();
-    window.location.href = "/";
+    cartClose();
+  };
+
+  const funcss = () => {
+    cartClose();
+    handleLogin();
   };
 
   return (
@@ -131,7 +137,7 @@ ${item.count} x ${item.price} = ${item.count * item.price} UZS`;
           onClick={() =>
             localStorage.getItem("user") || localStorage.getItem("admin")
               ? funcs()
-              : handleLogin()
+              : funcss()
           }
         >
           <p>{t("cart.send")}</p>

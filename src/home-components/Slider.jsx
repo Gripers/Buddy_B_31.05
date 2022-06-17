@@ -8,31 +8,19 @@ import { Context } from "../context";
 import axios from "axios";
 
 const Slider = () => {
-  const { categories, settings, categoryId, t, i18n, setBurgers } =
+  const { categories, catsettings, categoryId, t, i18n, setBurgers } =
     useContext(Context);
 
   return (
     <div style={{ height: "40px" }}>
-      <SlickSlider className="categories" id="categoriess" {...settings}>
-        <div
-          className="category"
-          onClick={() =>
-            axios
-              .get("https://buddyburger.herokuapp.com/burgers/")
-              .then((res) => setBurgers(res.data))
-          }
-        >
-          <p>{t("categories.all")}</p>
-        </div>
+      <SlickSlider className="categories" id="categoriess" {...catsettings}>
         {categories.map((cat) => {
           return (
-            <div
-              key={cat.id}
-              className="category"
-              onClick={() => categoryId(cat.id)}
-            >
-              <p>{i18n.language === "ru" ? cat.name_ru : cat.name_uz}</p>
-            </div>
+            <a href={`#${cat.name_ru}`}>
+              <div key={cat.id} className="category">
+                <p>{i18n.language === "ru" ? cat.name_ru : cat.name_uz}</p>
+              </div>
+            </a>
           );
         })}
       </SlickSlider>

@@ -1,24 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
-import header_pic from "../img/header1.webp";
-import header_picc from "../img/header2.jpg";
-import header_piccc from "../img/header3.webp";
+import header_pic from "../img/header1.jfif";
+import header_picc from "../img/header2.jfif";
+import header_piccc from "../img/header3.jfif";
 import Slider from "react-slick";
 import "../styles/header.scss";
+import { Context } from "../context";
 
 const Header = () => {
-  const settings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  };
+  const { headsettings } = useContext(Context);
 
   return (
-    <Slider {...settings} className="header-slider">
+    <Slider {...headsettings} className="header-slider">
       <div className="header-div">
         <LazyLoadImage
           className="header-pic"

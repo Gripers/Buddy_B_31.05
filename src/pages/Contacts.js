@@ -1,16 +1,21 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 
 import Footer from "../home-components/Footer";
 import { Context } from "../context";
 import "../styles/contacts.scss";
-import Navbar from "../home-components/Navbar";
+
+import NProgress from "nprogress";
 
 const Contacts = () => {
-  const { t } = useContext(Context);
+  const { t, setContactsCol } = useContext(Context);
+
+  useEffect(() => {
+    NProgress.done();
+    setContactsCol("#51267d");
+  }, []);
 
   return (
     <div className="d-flex min-vh-100 flex-column justify-content-between">
-      <Navbar />
       <div className="contacts-cont">
         <div
           className="contacts-glav-box mt-5"

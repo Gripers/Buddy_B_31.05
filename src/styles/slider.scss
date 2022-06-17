@@ -1,10 +1,17 @@
+a {
+  color: black;
+  text-decoration: none;
+}
+a:hover {
+  color: black;
+}
 .category {
   cursor: pointer;
   background: white;
   text-align: center;
   border-radius: 12px;
   padding: 1vh;
-  P {
+  p {
     margin: 0;
     font-size: 18px;
   }

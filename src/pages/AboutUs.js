@@ -1,17 +1,22 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Context } from "../context";
 import Footer from "../home-components/Footer";
-import Navbar from "../home-components/Navbar";
 
 import picture from "../img/about.png";
 import "../styles/aboutus.scss";
 
+import NProgress from "nprogress";
+
 const AboutUs = () => {
-  const { t } = useContext(Context);
+  const { t, setAboutusCol } = useContext(Context);
+
+  useEffect(() => {
+    NProgress.done();
+    setAboutusCol("#51267d");
+  }, []);
 
   return (
     <div className="d-flex min-vh-100 flex-column justify-content-between">
-      <Navbar />
       <div
         className="aboutus-glav-box"
         style={{ boxShadow: "0 4px 30px rgb(0 0 0 / 7%)" }}

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import {
   AppBar,
   Toolbar,
@@ -8,9 +8,9 @@ import {
   useMediaQuery,
 } from "@material-ui/core";
 import DrawerComponent from "./Drawer";
-import { Link, NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-import logo from "../img/logo.svg";
+import logo from "../img/logo.png";
 import "../styles/navbar.scss";
 import cart from "../img/shopping-cart.svg";
 import { Context } from "../context";
@@ -21,6 +21,8 @@ import Register from "./Register";
 import Confirm from "./Confirm";
 import LogConfirm from "./LoginConfirm";
 import BasicMenu from "./DropMenu";
+import $ from "jquery";
+import NProgress from "nprogress";
 
 function Navbar() {
   const {
@@ -39,6 +41,15 @@ function Navbar() {
     setConfirm,
     logconfirm,
     setLogConfirm,
+    navshow,
+    homeCol,
+    setHomeCol,
+    filialsCol,
+    setFilialsCol,
+    aboutusCol,
+    setAboutusCol,
+    contactsCol,
+    setContactsCol,
   } = useContext(Context);
   const classes = useStyles();
   const theme = useTheme();
@@ -47,9 +58,81 @@ function Navbar() {
     i18n.changeLanguage(language);
   };
 
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    $("#logo-nav").on("click", function () {
+      NProgress.start();
+      setTimeout(() => {
+        navigate("/");
+        setHomeCol("#51257d");
+        setFilialsCol("black");
+        setAboutusCol("black");
+        setContactsCol("black");
+      }, 1000);
+    });
+  }, []);
+
+  useEffect(() => {
+    $("#first-nav").on("click", function () {
+      NProgress.start();
+      setTimeout(() => {
+        navigate("/");
+        setHomeCol("#51257d");
+        setFilialsCol("black");
+        setAboutusCol("black");
+        setContactsCol("black");
+      }, 1000);
+    });
+  }, []);
+
+  useEffect(() => {
+    $("#second-nav").on("click", function () {
+      NProgress.start();
+      setTimeout(() => {
+        navigate("/filials");
+        setHomeCol("black");
+        setFilialsCol("#51267d");
+        setAboutusCol("black");
+        setContactsCol("black");
+      }, 1000);
+    });
+  }, []);
+
+  useEffect(() => {
+    $("#third-nav").on("click", function () {
+      NProgress.start();
+      setTimeout(() => {
+        navigate("/aboutus");
+        setHomeCol("black");
+        setFilialsCol("black");
+        setAboutusCol("#51267d");
+        setContactsCol("black");
+      }, 500);
+    });
+  }, []);
+
+  useEffect(() => {
+    $("#fourth-nav").on("click", function () {
+      NProgress.start();
+      setTimeout(() => {
+        navigate("/contacts");
+        setHomeCol("black");
+        setFilialsCol("black");
+        setAboutusCol("black");
+        setContactsCol("#51267d");
+      }, 500);
+    });
+  }, []);
+
   return (
     <>
-      <AppBar position="static" className="bg-white">
+      <AppBar
+        id="miuapp-navbar"
+        position="static"
+        className="bg-white"
+        style={{ display: navshow }}
+      >
         <CssBaseline />
         <Toolbar>
           {isMobile ? (
@@ -58,75 +141,67 @@ function Navbar() {
             <>
               <div className="start">
                 <Typography variant="h4" className={classes.logo}>
-                  <Link to="/">
-                    <img src={logo} alt="" />
-                  </Link>
+                  <a id="logo-nav">
+                    <img style={{ width: "50px" }} src={logo} alt="" />
+                  </a>
                 </Typography>
                 <div className={classes.navlinks}>
-                  <NavLink
-                    to="/"
-                    className={({ isActive }) =>
-                      isActive ? "active" : "unactive"
-                    }
+                  <a
+                    id="first-nav"
                     style={{
                       textDecoration: "none",
-                      color: "black",
+                      color: homeCol,
                       fontSize: "16px",
                       marginLeft: theme.spacing(5),
                       marginBottom: "0",
                       fontWeight: "bold",
+                      cursor: "pointer",
                     }}
                   >
                     {t("navbar.home")}
-                  </NavLink>
-                  <NavLink
-                    to="/filials"
-                    className={({ isActive }) =>
-                      isActive ? "active" : "unactive"
-                    }
+                  </a>
+                  <a
+                    id="second-nav"
                     style={{
                       textDecoration: "none",
-                      color: "black",
+                      color: filialsCol,
                       fontSize: "16px",
                       marginLeft: theme.spacing(5),
                       marginBottom: "0",
                       fontWeight: "bold",
+                      cursor: "pointer",
                     }}
                   >
                     {t("navbar.filials")}
-                  </NavLink>
-                  <NavLink
-                    to="/aboutus"
-                    className={({ isActive }) =>
-                      isActive ? "active" : "unactive"
-                    }
+                  </a>
+                  <a
+                    id="third-nav"
                     style={{
                       textDecoration: "none",
-                      color: "black",
+                      color: aboutusCol,
                       fontSize: "16px",
                       marginLeft: theme.spacing(5),
                       marginBottom: "0",
                       fontWeight: "bold",
+                      cursor: "pointer",
                     }}
                   >
                     {t("navbar.about-us")}
-                  </NavLink>
-                  <NavLink
-                    to="/contacts"
-                    className={({ isActive }) =>
-                      isActive ? "active" : "unactive"
-                    }
+                  </a>
+                  <a
+                    id="fourth-nav"
                     style={{
                       textDecoration: "none",
-                      color: "black",
+                      color: contactsCol,
                       fontSize: "16px",
                       marginLeft: theme.spacing(5),
                       marginBottom: "0",
                       fontWeight: "bold",
+                      cursor: "pointer",
                     }}
                   >
                     {t("navbar.contacts")}
-                  </NavLink>
+                  </a>
                 </div>
               </div>
               <div className="end">

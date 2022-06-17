@@ -38,7 +38,7 @@
 }
 
 .mini-cart-drawer-burgers::-webkit-scrollbar {
-  display: none !important;
+  display: block !important;
 }
 
 .mini-cart-drawer-burger {
@@ -57,6 +57,7 @@
     }
   }
   .mini-cart-drawer-title {
+    width: 115px;
     p {
       font-size: 16px;
       margin: 0;
@@ -130,5 +131,8 @@
 @media all and (max-width: 600px) {
   .MuiPaper-root {
     min-width: 100%;
+  }
+  .mini-cart-drawer-title {
+    width: 119px !important;
   }
 }

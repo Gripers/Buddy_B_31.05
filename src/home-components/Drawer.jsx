@@ -1,14 +1,14 @@
 import React, { useContext } from "react";
 import { Drawer, IconButton, makeStyles } from "@material-ui/core";
 import { Link, NavLink } from "react-router-dom";
-import "../img/logo.svg";
 
 import MenuIcon from "@material-ui/icons/Menu";
 
 import { useTranslation } from "react-i18next";
 import "../styles/drawer.scss";
-import logo from "../img/logo.svg";
+import logo from "../img/logo.png";
 import { Context } from "../context";
+import BasicMenu from "./DropMenu";
 
 const useStyles = makeStyles(() => ({
   link: {
@@ -35,7 +35,7 @@ function DrawerComponent() {
         transitionDuration={500}
       >
         <div className="drawer-upper">
-          <img src={logo} alt="" />
+          <img style={{ width: "60px" }} src={logo} alt="" />
           <svg
             onClick={() => setOpenDrawer(false)}
             class="MuiSvgIcon-root"
@@ -87,11 +87,16 @@ function DrawerComponent() {
           <MenuIcon />
         </IconButton>
         <Link to="/">
-          <img src={logo} alt="" />
+          <img style={{ width: "60px" }} src={logo} alt="" />
         </Link>
-        <button className="drawer-sign-in-btn" onClick={handleLogin}>
-          {t("navbar.sign-in")}
-        </button>
+
+        {localStorage.getItem("user") || localStorage.getItem("admin") ? (
+          <BasicMenu />
+        ) : (
+          <button className="drawer-sign-in-btn" onClick={handleLogin}>
+            {t("navbar.sign-in")}
+          </button>
+        )}
       </div>
     </>
   );

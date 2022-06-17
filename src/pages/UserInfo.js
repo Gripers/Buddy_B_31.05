@@ -1,15 +1,23 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Context } from "../context";
 import Footer from "../home-components/Footer";
-import Navbar from "../home-components/Navbar";
 import "../styles/userinfo.scss";
 
 const UserInfo = () => {
   const { t } = useContext(Context);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!localStorage.getItem("user")) {
+      navigate("/");
+    } else if (!localStorage.getItem("admin")) {
+      navigate("/");
+    }
+  }, []);
 
   return (
     <div className="d-flex min-vh-100 flex-column justify-content-between">
-      <Navbar />
       <div className="user-card-container my-5">
         <div className="user-card">
           <h3>{t("profile.info")}</h3>

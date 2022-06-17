@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App";
 
 import "./i18n";
+import "./nprogress.css";
 import { ContextProvider } from "./context";
 import { BrowserRouter } from "react-router-dom";
 import { CartProvider } from "react-use-cart";

@@ -1,3 +1,7 @@
+.category-h2 {
+  font-size: 28px;
+  font-weight: bold;
+}
 .burgers-container {
   display: grid;
   gap: 2rem;
@@ -7,7 +11,7 @@
     .burger-div-header {
       display: flex;
       height: 220px;
-      padding: 1vh;
+      padding: 4vh;
       span {
         margin: 0 auto;
         img {
@@ -53,6 +57,10 @@
     margin: 0 auto;
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
+  .category-h2 {
+    max-width: 1146px;
+    margin: 0 auto;
+  }
 }
 @media all and (max-width: 1280px) {
   .burgers-container {
@@ -80,6 +88,11 @@
   }
   .burger-div-header {
     height: 145px !important;
+  }
+  .burger-div-body {
+    h4 {
+      font-size: 16px !important;
+    }
   }
 }
 @media all and (max-width: 350px) {

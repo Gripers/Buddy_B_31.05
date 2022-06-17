@@ -36,7 +36,11 @@
   background: #51267d !important;
 }
 .dropdown-menu li .dropdown-item:active {
-  background: none !important;
+  background: #51267d !important;
+}
+.dropdown-menu li .dropdown-item:hover {
+  color: white !important;
+  background: #51267d !important;
 }
 
 .active {

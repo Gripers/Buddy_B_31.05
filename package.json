@@ -19,6 +19,7 @@
     "i18next-http-backend": "^1.4.0",
     "jquery": "^3.6.0",
     "node-sass": "^7.0.1",
+    "nprogress": "^0.2.0",
     "qs": "^6.10.3",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",

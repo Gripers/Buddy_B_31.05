@@ -12,6 +12,7 @@ import FilialOneInner from "./filial-components/FilialOneInner";
 import FilialTwoInner from "./filial-components/FilialTwoInner";
 import PutPatch from "./PutPatch";
 import UserInfo from "./pages/UserInfo";
+import Navbar from "./home-components/Navbar";
 
 const App = () => {
   const [isLoading, setLoading] = useState(false);
@@ -26,6 +27,7 @@ const App = () => {
 
   return (
     <div className="App">
+      <Navbar />
       <Routes>
         <Route index element={<Home />} />
         <Route path="/filials" element={<Filials />} />
