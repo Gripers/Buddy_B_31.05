@@ -17,10 +17,13 @@ const Burgers = () => {
         <>
           {categories.map((cat) => {
             return (
-              <div className="my-5">
-                <h2 id={cat.name_ru} className="category-h2 mb-4">
-                  {cat.name_ru}
-                </h2>
+              <div key={cat.id} className="my-0">
+                <br id={i18n.language === "ru" ? cat.name_ru : cat.name_uz} />
+                <br />
+                <br />
+                <br />
+                <br />
+                <h2 className="category-h2 mb-4">{cat.name_ru}</h2>
                 <div className="burgers-container">
                   {cat.burgers.map((burger) => {
                     return (
@@ -42,8 +45,17 @@ const Burgers = () => {
                               ? burger.name_ru
                               : burger.name_uz}
                           </h4>
+                          {burger.price ? (
+                            <p className="hiden-price">{burger.price} UZS</p>
+                          ) : (
+                            <p className="hiden-price">{t("price")}</p>
+                          )}
                           <div className="card-order">
-                            <p>{burger.price} UZS</p>
+                            {burger.price ? (
+                              <p>{burger.price} UZS</p>
+                            ) : (
+                              <p>{t("price")}</p>
+                            )}
                             {getItem(burger.id) ? (
                               <button
                                 className="change-btn"

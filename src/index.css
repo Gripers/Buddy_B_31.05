@@ -80,6 +80,11 @@ img {
   height: 12px !important;
 }
 
+.active-category {
+  background: #51267d !important;
+  color: white !important;
+}
+
 @media all and (max-width: 500px) {
   .MuiDialog-paper {
     margin: 0 !important;

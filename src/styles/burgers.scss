@@ -24,10 +24,19 @@
     .burger-div-body {
       padding: 2vh;
       h4 {
-        min-height: 50px;
         font-weight: bold;
         font-size: 20px;
         color: black;
+        overflow: hidden;
+        position: relative;
+        z-index: 1;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+      }
+      .hiden-price {
+        font-weight: bold;
+        font-size: 15px;
       }
       .card-order {
         display: flex;
@@ -68,6 +77,10 @@
     margin: 0 auto;
     grid-template-columns: 1fr 1fr 1fr;
   }
+  .category-h2 {
+    width: 95%;
+    margin: 0 auto;
+  }
 }
 @media all and (max-width: 800px) {
   .burgers-container {
@@ -75,6 +88,11 @@
   }
   .burger-div-header {
     height: 190px !important;
+  }
+}
+@media all and (min-width: 550px) {
+  .hiden-price {
+    display: none !important;
   }
 }
 @media all and (max-width: 550px) {

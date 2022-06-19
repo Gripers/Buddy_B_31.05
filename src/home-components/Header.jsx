@@ -1,19 +1,23 @@
-import React, { useContext } from "react";
+import React from "react";
 
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import OwlCarousel from "react-owl-carousel";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import header_pic from "../img/header1.jfif";
 import header_picc from "../img/header2.jfif";
 import header_piccc from "../img/header3.jfif";
-import Slider from "react-slick";
 import "../styles/header.scss";
-import { Context } from "../context";
 
 const Header = () => {
-  const { headsettings } = useContext(Context);
+  const headsettings = {
+    loop: true,
+    nav: false,
+    dots: false,
+    items: 1,
+  };
 
   return (
-    <Slider {...headsettings} className="header-slider">
+    <OwlCarousel {...headsettings} className="owl-theme header-slider">
       <div className="header-div">
         <LazyLoadImage
           className="header-pic"
@@ -38,7 +42,7 @@ const Header = () => {
           effect="blur"
         />
       </div>
-    </Slider>
+    </OwlCarousel>
   );
 };
 

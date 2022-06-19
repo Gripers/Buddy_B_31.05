@@ -98,50 +98,6 @@ const ContextProvider = ({ children }) => {
   const regnotify = () => toast.error(regmes);
   const regconnotify = () => toast.error(con);
 
-  const headsettings = {
-    dots: false,
-    infinite: true,
-    arrows: false,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  };
-
-  const catsettings = {
-    dots: false,
-    arrows: false,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 5,
-    slidesToScroll: 1,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 4,
-        },
-      },
-      {
-        breakpoint: 737,
-        settings: {
-          slidesToShow: 3,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 2,
-        },
-      },
-      {
-        breakpoint: 300,
-        settings: {
-          slidesToShow: 1,
-        },
-      },
-    ],
-  };
-
   const categoryId = async (id) => {
     try {
       const res = await axios
@@ -458,6 +414,10 @@ const ContextProvider = ({ children }) => {
 
   //consts end
 
+  //lets start
+
+  //lets end
+
   //effects start
 
   useEffect(() => {
@@ -473,7 +433,11 @@ const ContextProvider = ({ children }) => {
   //effects end
 
   if (!categories) {
-    return "";
+    return "Loading...";
+  }
+
+  if (!burgers) {
+    return "Loading...";
   }
 
   NProgress.configure({ showSpinner: false, easing: "ease" });
@@ -483,7 +447,6 @@ const ContextProvider = ({ children }) => {
       <Context.Provider
         value={{
           categories,
-          catsettings,
           burgers,
           t,
           i18n,
@@ -612,7 +575,6 @@ const ContextProvider = ({ children }) => {
           setAboutusCol,
           contactsCol,
           setContactsCol,
-          headsettings,
         }}
       >
         {children}
