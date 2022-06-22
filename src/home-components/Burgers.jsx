@@ -17,8 +17,12 @@ const Burgers = () => {
         <>
           {categories.map((cat) => {
             return (
-              <div key={cat.id} className="my-0">
-                <br id={i18n.language === "ru" ? cat.name_ru : cat.name_uz} />
+              <section
+                key={cat.id}
+                className="my-0"
+                id={i18n.language === "ru" ? cat.name_ru : cat.name_uz}
+              >
+                <br />
                 <br />
                 <br />
                 <br />
@@ -81,7 +85,7 @@ const Burgers = () => {
                     );
                   })}
                 </div>
-              </div>
+              </section>
             );
           })}
         </>

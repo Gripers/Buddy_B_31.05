@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import OwlCarousel from "react-owl-carousel";
 import "../styles/slider.scss";
 import { Context } from "../context";
+import $ from "jquery";
 
 import prev from "../img/prev.svg";
 import next from "../img/next.svg";
@@ -18,6 +19,7 @@ const Slider = () => {
     dots: false,
     responsiveClass: true,
     navText: [`<img src=${prev}>`, `<img src=${next}>`],
+    items: 5,
     responsive: {
       0: {
         items: 1,
